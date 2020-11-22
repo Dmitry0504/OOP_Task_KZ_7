@@ -1,0 +1,59 @@
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class Graphics {
+    private JFrame jFrame = new JFrame("One-armed bandit");
+    private JButton button = new JButton("click me");
+    private JLabel label = new JLabel("score");
+    private JLabel score = new JLabel("0000");
+
+    private JLabel window1 = new JLabel("0");
+    private JLabel window2 = new JLabel("0");
+    private JLabel window3 = new JLabel("0");
+
+    private Integer point = 0;
+    Graphics(){
+
+        jFrame.setSize(300, 300);
+        jFrame.setVisible(true);
+        jFrame.setLayout(null);
+
+        button.addActionListener(new ButtonEventListener());
+
+        button.setBounds(100, 220, 100, 25);
+        label.setBounds(150, 10, 50, 25);
+        score.setBounds(215, 10, 70, 25);
+        window1.setBounds(125, 130, 25, 25);
+        window2.setBounds(150, 130, 25, 25);
+        window3.setBounds(175, 130, 25, 25);
+
+        jFrame.add(button);
+        jFrame.add(label);
+        jFrame.add(score);
+        jFrame.add(window1);
+        jFrame.add(window2);
+        jFrame.add(window3);
+
+        jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+
+
+    class ButtonEventListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            Integer x1 = Game.getRandomNumber();
+            Integer x2 = Game.getRandomNumber();
+            Integer x3 = Game.getRandomNumber();
+            point += Game.getScore(x1, x2, x3);
+            String message = point.toString();
+
+            score.setText(message);
+
+            window1.setText(x1.toString());
+            window2.setText(x2.toString());
+            window3.setText(x3.toString());
+        }
+    }
+}
