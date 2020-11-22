@@ -1,0 +1,24 @@
+public class Game {
+
+    public static int getRandomNumber(){
+        int i = (int) (Math.random() * 7) + 1;
+        return i;
+    }
+
+    public static int getScore(Integer x1, Integer x2, Integer x3){
+        int result = 0;
+
+        if(x1 == 7 && x1.equals(x2) && x2.equals(x3)){
+            result = 1000;
+        }
+        else if(x1.equals(x2) && x2.equals(x3)){
+            result = 500;
+        }
+        else if(x1.equals(x2) ^ x1.equals(x3) ^ x2.equals(x3)){
+            result = 100;
+        }
+
+        return result;
+    }
+
+}
